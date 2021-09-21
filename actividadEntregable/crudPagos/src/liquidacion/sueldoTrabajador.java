@@ -202,7 +202,9 @@ public class sueldoTrabajador extends javax.swing.JFrame {
                                         .addComponent(jLabel18)
                                         .addGap(2, 2, 2)
                                         .addComponent(cbsueldo, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(txttelefono, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(cbestado, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txttelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(39, 39, 39)
                                 .addComponent(txtcalcular)))
@@ -219,10 +221,7 @@ public class sueldoTrabajador extends javax.swing.JFrame {
                                 .addComponent(jLabel3)
                                 .addGap(119, 119, 119)
                                 .addComponent(jLabel4))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(cbestado, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -365,7 +364,7 @@ public class sueldoTrabajador extends javax.swing.JFrame {
         // TODO add your handling code here:
         try{
             String SQL = "insert Into pago (dni, nombre, estado, direccion, telefono, horas, sueldo) Values(?,?,?,?,?,?,?)";
-            
+
             PreparedStatement pst = con.prepareStatement(SQL);
             
             pst.setString(1, txtdni.getText());
@@ -375,11 +374,12 @@ public class sueldoTrabajador extends javax.swing.JFrame {
             int item1= cbestado.getSelectedIndex();
             pst.setString(3, cbestado.getItemAt(item1));
             
+            
             pst.setString(4, txtdireccion.getText());
             pst.setString(5, txttelefono.getText());
             
             int item2= cbhoras.getSelectedIndex();
-            pst.setString(6, cbestado.getItemAt(item2));
+            pst.setString(6, cbhoras.getItemAt(item2));
             
             int item3= cbsueldo.getSelectedIndex();
             pst.setString(7, cbsueldo.getItemAt(item3));
@@ -387,7 +387,7 @@ public class sueldoTrabajador extends javax.swing.JFrame {
                         
             pst.execute();
             
-            JOptionPane.showMessageDialog(null, "Datos insetados correctamente");
+            JOptionPane.showMessageDialog(null, "Datos insertados correctamente");
             
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, "No se insertaron los Datos "+ e.getMessage());

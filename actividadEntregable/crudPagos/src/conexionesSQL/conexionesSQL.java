@@ -14,7 +14,7 @@ public class conexionesSQL{
     public Connection conexion(){
       try{
             Class.forName("java.sql.Connection");
-            conector = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/liquidacion?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "1234");
+            conector = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/liquidacion", "root", "1234");
                 
             
             JOptionPane.showMessageDialog(null,"Conexion exitosa");
